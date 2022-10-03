@@ -1,3 +1,4 @@
+import cssText from "data-text:../style.css"
 import type {
   PlasmoContentScript,
   PlasmoGetInlineAnchor,
@@ -5,34 +6,35 @@ import type {
 } from "plasmo"
 import { createRoot } from "react-dom/client"
 
+export const getStyle = () => {
+  const style = document.createElement("style")
+  style.textContent = cssText
+  return style
+}
+
 export const config: PlasmoContentScript = {
   matches: ["https://console.firebase.google.com/*"]
 }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = () => {
-  console.log(
-    "are you called",
-    document.querySelectorAll("span.database-leaf-value.ng-star-inserted")
-  )
-
   const fieldValueSpans = document.querySelectorAll(
     "span.database-leaf-value.ng-star-inserted"
-  );
+  )
 
   fieldValueSpans.forEach((fieldValue) => {
     if (!fieldValue.querySelector("#navigator-btn")) {
-      const sendButton = fieldValue.childNodes.item(0)
+      const fieldSpan = fieldValue.childNodes.item(0)
 
       const container = document.createElement("div")
       container.id = "navigator-btn"
-      sendButton?.parentNode?.insertBefore(container, sendButton.nextSibling)
+      fieldSpan?.replaceWith(container)
 
       let root = createRoot(container)
-      root.render(<IdInline />)
+      root.render(<IdInline value={fieldSpan.nodeValue} />)
     }
   })
 
-  return null;
+  return null
 }
 
 export const mountShadowHost: PlasmoMountShadowHost = ({
@@ -42,8 +44,12 @@ export const mountShadowHost: PlasmoMountShadowHost = ({
   inlineAnchor.appendChild(shadowHost)
 }
 
-const IdInline = () => {
-  return <a>Custom button</a>
+type Props = {
+  value: string
+}
+
+const IdInline = ({ value }: Props) => {
+  return <a className="w-full flex-none font-medium underline">{value}</a>
 }
 
 export default IdInline

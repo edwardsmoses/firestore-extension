@@ -17,17 +17,28 @@ export const config: PlasmoContentScript = {
 }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = () => {
-  const fieldValueSpans = document.querySelectorAll(
-    "span.database-leaf-value.ng-star-inserted"
+  const databaseFieldNodes = document.querySelectorAll(
+    "div.database-node-click-target"
   )
 
-  fieldValueSpans.forEach((fieldValue) => {
-    if (!fieldValue.querySelector("#navigator-btn")) {
-      const fieldSpan = fieldValue.childNodes.item(0)
+  databaseFieldNodes.forEach((fieldNode) => {
+    const fieldValue = fieldNode.querySelector(
+      "span.database-leaf-value.ng-star-inserted"
+    )
+    const fieldDatabaseButtons = fieldNode.querySelector("div.database-buttons")
+
+    if (!fieldDatabaseButtons.querySelector("#navigator-btn")) {
+      console.log(fieldValue.childNodes.item(0).nodeValue)
+
+      const fieldSpan = fieldNode.childNodes.item(0)
 
       const container = document.createElement("div")
       container.id = "navigator-btn"
-      fieldSpan?.replaceWith(container)
+
+      fieldDatabaseButtons.insertBefore(
+        container,
+        fieldDatabaseButtons.childNodes.item(0)
+      )
 
       let root = createRoot(container)
       root.render(<IdInline value={fieldSpan.nodeValue} />)
@@ -49,7 +60,7 @@ type Props = {
 }
 
 const IdInline = ({ value }: Props) => {
-  return <a className="w-full flex-none font-medium underline">{value}</a>
+  return <a className="flex-none w-full font-medium underline">Go</a>
 }
 
 export default IdInline

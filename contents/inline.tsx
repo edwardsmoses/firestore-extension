@@ -28,20 +28,30 @@ export const getInlineAnchor: PlasmoGetInlineAnchor = () => {
     const fieldDatabaseButtons = fieldNode.querySelector("div.database-buttons")
 
     if (!fieldDatabaseButtons.querySelector("#navigator-btn")) {
-      console.log(fieldValue.childNodes.item(0).nodeValue)
+      //the value of the Field in the Document...
+      //remove the double quotes from the value...
+      const databaseFieldValue = (
+        fieldValue?.childNodes?.item(0)?.nodeValue || ""
+      ).replace(/["']/g, "")
 
-      const fieldSpan = fieldNode.childNodes.item(0)
+      //get the current project from the URL
+      const currentURL = window.location.href
+      const currentProject = currentURL.split("/")[6] 
+
 
       const container = document.createElement("div")
       container.id = "navigator-btn"
 
+      //insert the "Navigation" button before the Firestore "Edit" button
       fieldDatabaseButtons.insertBefore(
         container,
-        fieldDatabaseButtons.childNodes.item(0)
+        fieldDatabaseButtons.childNodes.item(1)
       )
 
       let root = createRoot(container)
-      root.render(<IdInline value={fieldSpan.nodeValue} />)
+      root.render(
+        <IdInline projectName={currentProject} value={databaseFieldValue} />
+      )
     }
   })
 
@@ -56,11 +66,18 @@ export const mountShadowHost: PlasmoMountShadowHost = ({
 }
 
 type Props = {
+  projectName: string
   value: string
 }
 
-const IdInline = ({ value }: Props) => {
-  return <a className="flex-none w-full font-medium underline">Go</a>
+const IdInline = ({ projectName, value }: Props) => {
+  return (
+    <a
+      href={`/project/${projectName}/firestore/data/users/${value}`}
+      className="flex-none w-full font-medium underline">
+      Go
+    </a>
+  )
 }
 
 export default IdInline

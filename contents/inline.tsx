@@ -1,3 +1,4 @@
+import { ArrowRightCircleIcon } from "@heroicons/react/24/solid"
 import cssText from "data-text:../style.css"
 import type {
   PlasmoContentScript,
@@ -36,8 +37,7 @@ export const getInlineAnchor: PlasmoGetInlineAnchor = () => {
 
       //get the current project from the URL
       const currentURL = window.location.href
-      const currentProject = currentURL.split("/")[6] 
-
+      const currentProject = currentURL.split("/")[6]
 
       const container = document.createElement("div")
       container.id = "navigator-btn"
@@ -75,7 +75,7 @@ const IdInline = ({ projectName, value }: Props) => {
     <a
       href={`/project/${projectName}/firestore/data/users/${value}`}
       className="flex-none w-full font-medium underline">
-      Go
+      <ArrowRightCircleIcon style={{width: 24, height: 24}} />
     </a>
   )
 }

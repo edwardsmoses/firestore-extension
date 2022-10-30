@@ -1,4 +1,4 @@
-import { ArrowRightCircleIcon } from "@heroicons/react/24/solid"
+import { ArrowRightCircleIcon, Cog6ToothIcon } from "@heroicons/react/24/solid"
 import cssText from "data-text:../style.css"
 import type {
   PlasmoContentScript,
@@ -39,18 +39,21 @@ export const getInlineAnchor: PlasmoGetInlineAnchor = () => {
       const currentURL = window.location.href
       const currentProject = currentURL.split("/")[6]
 
-      const container = document.createElement("div")
-      container.id = "navigator-btn"
+      const navigatorContainer = document.createElement("div")
+      navigatorContainer.id = "navigator-btn"
 
       //insert the "Navigation" button before the Firestore "Edit" button
       fieldDatabaseButtons.insertBefore(
-        container,
-        fieldDatabaseButtons.childNodes.item(1)
+        navigatorContainer,
+        fieldDatabaseButtons.childNodes.item(2)
       )
 
-      let root = createRoot(container)
-      root.render(
-        <IdInline projectName={currentProject} value={databaseFieldValue} />
+      let navigatorRoot = createRoot(navigatorContainer)
+      navigatorRoot.render(
+        <IdContainerInline
+          projectName={currentProject}
+          value={databaseFieldValue}
+        />
       )
     }
   })
@@ -65,19 +68,48 @@ export const mountShadowHost: PlasmoMountShadowHost = ({
   inlineAnchor.appendChild(shadowHost)
 }
 
-type Props = {
+type ContainerProps = {
   projectName: string
   value: string
 }
 
-const IdInline = ({ projectName, value }: Props) => {
+
+const IdContainerInline = ({ projectName, value }: ContainerProps) => {
   return (
-    <a
-      href={`/project/${projectName}/firestore/data/users/${value}`}
-      className="flex-none w-full font-medium underline">
-      <ArrowRightCircleIcon style={{width: 24, height: 24}} />
+    <>
+      <IdNavigatorInline projectName={projectName} value={value} />
+      <IdSettingsInline projectName="" value="" />
+    </>
+  )
+}
+
+type NavigatorProps = {
+  projectName: string
+  value: string
+}
+
+
+const IdNavigatorInline = ({ projectName, value }: NavigatorProps) => {
+  return (
+    <a href={`/project/${projectName}/firestore/data/users/${value}`}>
+      <ArrowRightCircleIcon style={{ width: 24, height: 24 }} />
     </a>
   )
 }
 
-export default IdInline
+
+
+type SettingsProps = {
+  projectName: string
+  value: string
+}
+
+const IdSettingsInline = ({ projectName, value }: SettingsProps) => {
+  return (
+    <button>
+      <Cog6ToothIcon style={{ width: 24, height: 24 }} />
+    </button>
+  )
+}
+
+export default IdContainerInline

@@ -1,3 +1,4 @@
+import { Box, DropButton, Grommet } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 
 export const config: PlasmoContentScript = {
@@ -14,7 +15,14 @@ export const getInlineAnchorList = async () => {
 export const getShadowHostId = () => "plasmo-inline-settings-id"
 
 const PlasmoInline = () => {
-  return <button>Settings</button>
+  return (
+    <Grommet>
+      <DropButton
+        label="Settings ->"
+        dropContent={<Box pad="large" background="light-2" />}
+      />
+    </Grommet>
+  )
 }
 
 export default PlasmoInline

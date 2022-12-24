@@ -1,4 +1,4 @@
-import { Box, DropButton, FormField, Grommet, TextInput, Button } from "grommet"
+import { Box, Button, DropButton, FormField, Grommet, TextInput } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 import { useState } from "react"
 
@@ -7,7 +7,7 @@ export const config: PlasmoContentScript = {
 }
 
 //TODOs: Only Display the Settings on the elements resembling an Id (possibly use Regex)
-//In the Future, only for customized Regex.. 
+//In the Future, only for customized Regex..
 
 export const getInlineAnchorList = async () => {
   const elements = document.querySelectorAll("div.database-node")
@@ -27,10 +27,20 @@ const PlasmoInline = () => {
 }
 
 const SettingsBox = () => {
+  
   const [targetCollection, setTargetCollection] = useState("")
+  const [emojiIcon, setEmojiIcon] = useState("")
 
   return (
     <Box pad="xlarge" background="light-2">
+      <FormField label="Icon">
+        <TextInput
+          placeholder="enter the emoji?"
+          value={emojiIcon}
+          onChange={(event) => setEmojiIcon(event.target.value)}
+        />
+      </FormField>
+
       <FormField label="Target Collection">
         <TextInput
           placeholder="enter the collection you want to target?"

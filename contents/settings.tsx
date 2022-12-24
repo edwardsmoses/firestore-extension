@@ -1,9 +1,13 @@
-import { Box, DropButton, Grommet } from "grommet"
+import { Box, DropButton, FormField, Grommet, TextInput, Button } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
+import { useState } from "react"
 
 export const config: PlasmoContentScript = {
   matches: ["https://console.firebase.google.com/*"]
 }
+
+//TODOs: Only Display the Settings on the elements resembling an Id (possibly use Regex)
+//In the Future, only for customized Regex.. 
 
 export const getInlineAnchorList = async () => {
   const elements = document.querySelectorAll("div.database-node")
@@ -17,11 +21,25 @@ export const getShadowHostId = () => "plasmo-inline-settings-id"
 const PlasmoInline = () => {
   return (
     <Grommet>
-      <DropButton
-        label="Settings ->"
-        dropContent={<Box pad="large" background="light-2" />}
-      />
+      <DropButton primary label="Settings" dropContent={<SettingsBox />} />
     </Grommet>
+  )
+}
+
+const SettingsBox = () => {
+  const [targetCollection, setTargetCollection] = useState("")
+
+  return (
+    <Box pad="xlarge" background="light-2">
+      <FormField label="Target Collection">
+        <TextInput
+          placeholder="enter the collection you want to target?"
+          value={targetCollection}
+          onChange={(event) => setTargetCollection(event.target.value)}
+        />
+      </FormField>
+      <Button primary label="Save" />
+    </Box>
   )
 }
 

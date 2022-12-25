@@ -10,8 +10,11 @@
     "build": "plasmo build"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.1.0",
+    "@emoji-mart/react": "^1.1.0",
     "@heroicons/react": "^2.0.12",
     "@plasmohq/storage": "^0.13.1",
+    "emoji-mart": "^5.4.0",
     "grommet": "^2.28.0",
     "grommet-icons": "^4.8.0",
     "plasmo": "^0.60.1",

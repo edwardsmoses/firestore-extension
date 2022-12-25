@@ -1,3 +1,5 @@
+import data from "@emoji-mart/data"
+import Picker from "@emoji-mart/react"
 import { Box, Button, DropButton, FormField, Grommet, TextInput } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 import { useState } from "react"
@@ -123,17 +125,13 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
   return (
     <Box pad="large" background="light-2">
-      <FormField label="Icon">
-        <TextInput
-          placeholder="enter the emoji?"
-          value={emojiIcon}
-          onChange={(event) => setEmojiIcon(event.target.value)}
-        />
-      </FormField>
-
+      <div>
+      <Picker data={data} onEmojiSelect={setEmojiIcon} />
+      </div>
+      
       <FormField label="Target Collection">
         <TextInput
-          placeholder="enter the collection you want to target?"
+          placeholder="enter the collection you want to target"
           value={targetCollection}
           onChange={(event) => setTargetCollection(event.target.value)}
         />

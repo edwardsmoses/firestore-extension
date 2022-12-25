@@ -104,7 +104,9 @@ const PlasmoInline = (props) => {
 type SettingsProps = StorageKeyArgs & {}
 const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   const [targetCollection, setTargetCollection] = useState("")
-  const [emojiIcon, setEmojiIcon] = useState("")
+  const [emojiIcon, setEmojiIcon] = useState("😀")
+
+  const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false)
 
   const handleSave = async () => {
     const storage = new Storage()
@@ -125,7 +127,21 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   return (
     <Box pad="large" background="light-2">
       <div>
-        <EmojiPicker onEmojiClick={(emoji) => setEmojiIcon(emoji.emoji)} />
+        <Button
+          type="button"
+          onClick={() => {
+            setIsEmojiPickerOpen((prev) => !prev)
+          }}>
+          {emojiIcon}
+        </Button>
+        {isEmojiPickerOpen && (
+          <EmojiPicker
+            onEmojiClick={(emoji) => {
+              setEmojiIcon(emoji.emoji)
+              setIsEmojiPickerOpen(false)
+            }}
+          />
+        )}
       </div>
 
       <FormField label="Target Collection">

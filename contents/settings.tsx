@@ -1,6 +1,7 @@
 import { Box, Button, DropButton, FormField, Grommet, TextInput } from "grommet"
-import type { PlasmoContentScript } from "plasmo"
-import { useState } from "react"
+import type { PlasmoContentScript, PlasmoRender } from "plasmo"
+import { useRef, useState } from "react"
+import { createRoot } from "react-dom/client"
 
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
@@ -21,23 +22,43 @@ export const getInlineAnchorList = async () => {
 // Use this to optimize unmount lookups
 export const getShadowHostId = () => "plasmo-inline-settings-id"
 
-const PlasmoInline = () => {
+const PlasmoInline = (props) => {
+
+  console.log('props', props);
+
   //TODO Temp values...
   const PROJECT_NAME = "edwards"
   const FIELD_NAME = "userId"
 
+  //get the current project from the URL
+  const currentURL = window.location.href
+  const currentProject = currentURL.split("/")[6]
+
   const [targetOptions] = useStorage(`${PROJECT_NAME}_${FIELD_NAME}`)
   console.log("options saved", targetOptions)
 
+  const currentRef = useRef<HTMLDivElement | null>(null)
+  
+  console.log('is it possible', currentRef.current);
+
   return (
     <Grommet>
-      <DropButton
-        primary
-        label="Settings"
-        dropContent={
-          <SettingsBox fieldName={FIELD_NAME} projectName={PROJECT_NAME} />
-        }
-      />
+      <div ref={currentRef}>
+        {(targetOptions || []).map((option) => {
+          return (
+            <>
+              <Button primary>{option.icon}</Button>
+            </>
+          )
+        })}
+        <DropButton
+          primary
+          label="Settings"
+          dropContent={
+            <SettingsBox fieldName={FIELD_NAME} projectName={PROJECT_NAME} />
+          }
+        />
+      </div>
     </Grommet>
   )
 }
@@ -62,7 +83,7 @@ const SettingsBox = ({ projectName, fieldName }: SettingsProps) => {
   }
 
   return (
-    <Box pad="xlarge" background="light-2">
+    <Box pad="large" background="light-2">
       <FormField label="Icon">
         <TextInput
           placeholder="enter the emoji?"
@@ -84,3 +105,26 @@ const SettingsBox = ({ projectName, fieldName }: SettingsProps) => {
 }
 
 export default PlasmoInline
+
+// const AnchorOverlay = ({ anchor }) =>  {
+//   console.log(anchor);
+//   return (<PlasmoInline /> )
+// }
+
+// export const render: PlasmoRender = (
+//   {
+//     anchor, // the observed anchor, OR document.body.
+//     createRootContainer // This creates the default root container
+//   },
+//   InlineCSUIContainer,
+//   OverlayCSUIContainer
+// ) => {
+//   const rootContainer = await createRootContainer()
+
+//   const root = createRoot(rootContainer)
+//   root.render(
+//     <InlineCSUIContainer>
+//       <AnchorOverlay anchor={anchor}/>
+//     </InlineCSUIContainer>
+//   )
+// }

@@ -17,6 +17,7 @@
     "@webcomponents/custom-elements": "^1.5.1",
     "@webcomponents/webcomponentsjs": "^2.7.0",
     "emoji-mart": "^5.4.0",
+    "emoji-picker-react": "^4.4.7",
     "grommet": "^2.28.0",
     "grommet-icons": "^4.8.0",
     "plasmo": "^0.60.1",

@@ -1,8 +1,4 @@
-import '@webcomponents/custom-elements'
-
-
-import data from "@emoji-mart/data"
-import Picker from "@emoji-mart/react"
+import EmojiPicker from "emoji-picker-react"
 import { Box, Button, DropButton, FormField, Grommet, TextInput } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 import { useState } from "react"
@@ -10,9 +6,8 @@ import { useState } from "react"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
-
 export const config: PlasmoContentScript = {
-  matches: ["https://console.firebase.google.com/*"],
+  matches: ["https://console.firebase.google.com/*"]
 }
 
 //TODOs: Only Display the Settings on the elements resembling an Id (possibly use Regex)
@@ -130,7 +125,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   return (
     <Box pad="large" background="light-2">
       <div>
-      <Picker data={data} onEmojiSelect={setEmojiIcon} />
+        <EmojiPicker onEmojiClick={(emoji) => setEmojiIcon(emoji.emoji)} />
       </div>
 
       <FormField label="Target Collection">

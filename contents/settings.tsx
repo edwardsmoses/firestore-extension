@@ -15,7 +15,6 @@ export const config: PlasmoContentScript = {
 
 export const getInlineAnchorList = async () => {
   const elements = document.querySelectorAll("div.database-node")
-  console.log("anchor", elements)
   return elements
 }
 
@@ -23,8 +22,18 @@ export const getInlineAnchorList = async () => {
 export const getShadowHostId = () => "plasmo-inline-settings-id"
 
 const PlasmoInline = (props) => {
+  const { anchor } = props
 
-  console.log('props', props);
+  const databaseFieldElement = anchor.element as HTMLDivElement
+
+  const fieldKey =
+    databaseFieldElement.childNodes[1].childNodes[1].childNodes[3].textContent
+  const fieldValue = (
+    databaseFieldElement.childNodes[1]?.childNodes[1]?.childNodes[5]
+      ?.textContent || ""
+  ).replace(/['"]/g, "")
+
+  console.log("field info", fieldKey, fieldValue)
 
   //TODO Temp values...
   const PROJECT_NAME = "edwards"
@@ -35,20 +44,19 @@ const PlasmoInline = (props) => {
   const currentProject = currentURL.split("/")[6]
 
   const [targetOptions] = useStorage(`${PROJECT_NAME}_${FIELD_NAME}`)
-  console.log("options saved", targetOptions)
-
-  const currentRef = useRef<HTMLDivElement | null>(null)
-  
-  console.log('is it possible', currentRef.current);
+  console.log("saved options", targetOptions)
 
   return (
     <Grommet>
-      <div ref={currentRef}>
+      <div>
         {(targetOptions || []).map((option) => {
           return (
-            <>
-              <Button primary>{option.icon}</Button>
-            </>
+            <Button
+              key={option.target}
+              href={`/project/${currentProject}/firestore/data/${option.target}/${fieldValue}`}
+              primary>
+              {option.icon}
+            </Button>
           )
         })}
         <DropButton
@@ -105,26 +113,3 @@ const SettingsBox = ({ projectName, fieldName }: SettingsProps) => {
 }
 
 export default PlasmoInline
-
-// const AnchorOverlay = ({ anchor }) =>  {
-//   console.log(anchor);
-//   return (<PlasmoInline /> )
-// }
-
-// export const render: PlasmoRender = (
-//   {
-//     anchor, // the observed anchor, OR document.body.
-//     createRootContainer // This creates the default root container
-//   },
-//   InlineCSUIContainer,
-//   OverlayCSUIContainer
-// ) => {
-//   const rootContainer = await createRootContainer()
-
-//   const root = createRoot(rootContainer)
-//   root.render(
-//     <InlineCSUIContainer>
-//       <AnchorOverlay anchor={anchor}/>
-//     </InlineCSUIContainer>
-//   )
-// }

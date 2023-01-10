@@ -116,7 +116,9 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   const [targetCollection, setTargetCollection] = useState("")
   const [emojiIcon, setEmojiIcon] = useState(DEFAULT_EMOJI_ICON)
 
+  const [selectedTarget, setSelectedTarget] = useState("")
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false)
+  const [processing, setProcessing] = useState(false)
 
   const storageKey = generateStorageKey({
     documentName,
@@ -125,27 +127,57 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   })
 
   const storage = useStorage(storageKey)
-  const targetOptions = storage[0] as TargetCollection[]
+  const existingTargetOptions = (storage[0] as TargetCollection[]) || []
 
   const handleSave = async () => {
-    const storage = new Storage()
+    setProcessing(true)
 
-    const target: TargetCollection = {
-      target: targetCollection,
-      icon: emojiIcon
+    try {
+      const storage = new Storage()
+
+      const target: TargetCollection = {
+        target: targetCollection,
+        icon: emojiIcon
+      }
+
+      let existing = false
+
+      let updatedTargetOptions: TargetCollection[] = existingTargetOptions.map(
+        (target) => {
+          if ([selectedTarget, targetCollection].includes(target.target)) {
+            existing = true
+            return {
+              icon: emojiIcon,
+              target: targetCollection
+            }
+          }
+          return target
+        }
+      )
+
+      if (!existing) {
+        updatedTargetOptions = [...updatedTargetOptions, target]
+      }
+
+      await storage.set(storageKey, updatedTargetOptions)
+
+      setTargetCollection("")
+      setEmojiIcon(DEFAULT_EMOJI_ICON)
+    } finally {
+      setProcessing(false)
     }
-
-    await storage.set(storageKey, [...(targetOptions || []), target])
   }
 
   return (
     <Box pad="large" background="light-2">
       <Nav>
-        {(targetOptions || []).map((option) => {
+        {(existingTargetOptions || []).map((option) => {
           return (
             <Anchor
+              key={option.target}
               icon={<div>{option.icon}</div>}
               onClick={() => {
+                setSelectedTarget(option.target);
                 setEmojiIcon(option.icon)
                 setTargetCollection(option.target)
               }}
@@ -186,7 +218,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           onChange={(event) => setTargetCollection(event.target.value)}
         />
       </FormField>
-      <Button primary label="Save" onClick={handleSave} />
+      <Button primary label="Save" disabled={processing} onClick={handleSave} />
     </Box>
   )
 }

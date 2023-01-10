@@ -1,5 +1,14 @@
 import EmojiPicker from "emoji-picker-react"
-import { Box, Button, DropButton, FormField, Grommet, TextInput } from "grommet"
+import {
+  Anchor,
+  Box,
+  Button,
+  DropButton,
+  FormField,
+  Grommet,
+  Nav,
+  TextInput
+} from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 import { useState } from "react"
 
@@ -108,24 +117,35 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false)
 
+  const storageKey = generateStorageKey({
+    documentName,
+    fieldName,
+    projectId
+  })
+
+  const storage = useStorage(storageKey)
+  const targetOptions = storage[0] as TargetCollection[]
+
   const handleSave = async () => {
     const storage = new Storage()
 
-    const storageKey = generateStorageKey({
-      documentName,
-      fieldName,
-      projectId
-    })
     const target: TargetCollection = {
       target: targetCollection,
       icon: emojiIcon
     }
 
-    await storage.set(storageKey, [target])
+    await storage.set(storageKey, [...(targetOptions || []), target])
   }
 
   return (
     <Box pad="large" background="light-2">
+      <Nav>
+        {(targetOptions || []).map((option) => {
+          return <Anchor icon={<div>{option.icon}</div>} />
+        })}
+        <Anchor icon={<div>+</div>} />
+      </Nav>
+
       <div>
         <Button
           type="button"

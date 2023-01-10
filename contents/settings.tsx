@@ -20,7 +20,7 @@ export const config: PlasmoContentScript = {
 }
 
 //TODOs: Only Display the Settings on the elements resembling an Id (possibly use Regex)
-//In the Future, only for customized Regex..
+//In the Future, allow for customized Regex..
 
 export const getInlineAnchorList = async () => {
   const elements = document.querySelectorAll("div.database-node")
@@ -177,7 +177,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
               key={option.target}
               icon={<div>{option.icon}</div>}
               onClick={() => {
-                setSelectedTarget(option.target);
+                setSelectedTarget(option.target)
                 setEmojiIcon(option.icon)
                 setTargetCollection(option.target)
               }}

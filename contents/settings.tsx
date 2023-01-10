@@ -112,8 +112,9 @@ const PlasmoInline = (props) => {
 
 type SettingsProps = StorageKeyArgs & {}
 const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
+  const DEFAULT_EMOJI_ICON = "😀"
   const [targetCollection, setTargetCollection] = useState("")
-  const [emojiIcon, setEmojiIcon] = useState("😀")
+  const [emojiIcon, setEmojiIcon] = useState(DEFAULT_EMOJI_ICON)
 
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false)
 
@@ -141,9 +142,23 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
     <Box pad="large" background="light-2">
       <Nav>
         {(targetOptions || []).map((option) => {
-          return <Anchor icon={<div>{option.icon}</div>} />
+          return (
+            <Anchor
+              icon={<div>{option.icon}</div>}
+              onClick={() => {
+                setEmojiIcon(option.icon)
+                setTargetCollection(option.target)
+              }}
+            />
+          )
         })}
-        <Anchor icon={<div>+</div>} />
+        <Anchor
+          icon={<div>+</div>}
+          onClick={() => {
+            setTargetCollection("")
+            setEmojiIcon(DEFAULT_EMOJI_ICON)
+          }}
+        />
       </Nav>
 
       <div>

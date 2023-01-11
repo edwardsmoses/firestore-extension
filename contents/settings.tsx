@@ -15,6 +15,16 @@ import { useState } from "react"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
+import styleText from "data-text:./settings.css"
+import type { PlasmoGetStyle } from "plasmo"
+
+ 
+export const getStyle: PlasmoGetStyle = () => {
+  const style = document.createElement("style")
+  style.textContent = styleText
+  return style
+}
+
 export const config: PlasmoContentScript = {
   matches: ["https://console.firebase.google.com/*"]
 }
@@ -97,6 +107,7 @@ const PlasmoInline = (props) => {
         <DropButton
           primary
           label="Settings"
+          className="elevate-field-settings-btn"
           dropContent={
             <SettingsBox
               fieldName={fieldKey}

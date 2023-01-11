@@ -1,0 +1,11 @@
+:root {
+  --firebase-elevate-brand: #7a52d3;
+}
+
+.elevate-field-settings-btn {
+  background-color: transparent;
+  border-radius: 30px;
+  margin-left: 40px;
+  border-color: black;
+  border-width: 2.3px;
+}

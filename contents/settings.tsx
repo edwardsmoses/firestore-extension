@@ -26,7 +26,8 @@ export const getStyle: PlasmoGetStyle = () => {
 }
 
 export const config: PlasmoContentScript = {
-  matches: ["https://console.firebase.google.com/*"]
+  matches: ["https://console.firebase.google.com/*"],
+  css: ["font.css"]
 }
 
 //TODOs: Only Display the Settings on the elements resembling an Id (possibly use Regex)

@@ -1,5 +1,6 @@
-:root {
+#plasmo-shadow-container {
   --firebase-elevate-brand: #7a52d3;
+  --firebase-elevate-font: "Inter";
 }
 
 .elevate-field-settings-btn {
@@ -8,4 +9,7 @@
   margin-left: 40px;
   border-color: black;
   border-width: 2.3px;
+  font-family: var(--firebase-elevate-font);
+  font-weight: 600;
+  font-size: 11.3px;
 }

@@ -1,3 +1,4 @@
+import styleText from "data-text:./settings.css"
 import EmojiPicker from "emoji-picker-react"
 import {
   Anchor,
@@ -10,15 +11,12 @@ import {
   TextInput
 } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
+import type { PlasmoGetStyle } from "plasmo"
 import { useState } from "react"
 
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
-import styleText from "data-text:./settings.css"
-import type { PlasmoGetStyle } from "plasmo"
-
- 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
   style.textContent = styleText
@@ -109,6 +107,13 @@ const PlasmoInline = (props) => {
           primary
           label="Settings"
           className="elevate-field-settings-btn"
+          dropProps={{
+            style: {
+              fontFamily: "Inter",
+              borderRadius: "25px",
+              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
+            }
+          }}
           dropContent={
             <SettingsBox
               fieldName={fieldKey}
@@ -181,7 +186,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   }
 
   return (
-    <Box pad="large" background="light-2">
+    <Box pad="medium">
       <Nav>
         {(existingTargetOptions || []).map((option) => {
           return (

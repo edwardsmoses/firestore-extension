@@ -8,6 +8,7 @@ import {
   FormField,
   Grommet,
   Nav,
+  Text,
   TextInput
 } from "grommet"
 import type { PlasmoContentScript } from "plasmo"
@@ -211,13 +212,6 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
       </Nav>
 
       <div>
-        <Button
-          type="button"
-          onClick={() => {
-            setIsEmojiPickerOpen((prev) => !prev)
-          }}>
-          {emojiIcon}
-        </Button>
         {isEmojiPickerOpen && (
           <EmojiPicker
             onEmojiClick={(emoji) => {
@@ -227,14 +221,45 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           />
         )}
       </div>
+      <Box
+        direction="row"
+        margin={{
+          vertical: "4px"
+        }}
+        style={{
+          alignItems: "center"
+        }}
+        gap="5px">
+        <Button
+          style={{
+            borderRadius: "50px",
+            borderColor: "#7a52d3",
+            padding: "1px",
+            borderWidth: "2.5px",
+            borderStyle: "solid"
+          }}
+          type="button"
+          onClick={() => {
+            setIsEmojiPickerOpen((prev) => !prev)
+          }}>
+          {emojiIcon}
+        </Button>
+        <Text>Related Collection</Text>
+      </Box>
 
-      <FormField label="Target Collection">
+      <Box
+        margin={{
+          horizontal: "5px",
+          top: "4px",
+          bottom: "6px"
+        }}>
         <TextInput
-          placeholder="enter the collection you want to target"
+          placeholder="collection name"
           value={targetCollection}
           onChange={(event) => setTargetCollection(event.target.value)}
         />
-      </FormField>
+      </Box>
+
       <Button primary label="Save" disabled={processing} onClick={handleSave} />
     </Box>
   )

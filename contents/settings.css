@@ -1,4 +1,4 @@
-#plasmo-shadow-container {
+body, #plasmo-shadow-container {
   --firebase-elevate-brand: #7a52d3;
   --firebase-elevate-font: "Inter";
 }

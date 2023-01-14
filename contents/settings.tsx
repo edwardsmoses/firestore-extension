@@ -109,7 +109,7 @@ const PlasmoInline = (props) => {
           className="elevate-field-settings-btn"
           dropProps={{
             style: {
-              fontFamily: "Inter",
+              fontFamily: "var(--firebase-elevate-font)",
               borderRadius: "25px",
               boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
             }

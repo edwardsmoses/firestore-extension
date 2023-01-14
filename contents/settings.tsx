@@ -256,6 +256,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
         <TextInput
           placeholder="collection name"
           value={targetCollection}
+          focusIndicator={false}
           onChange={(event) => setTargetCollection(event.target.value)}
         />
       </Box>

@@ -13,3 +13,9 @@ body, #plasmo-shadow-container {
   font-weight: 600;
   font-size: 11.3px;
 }
+
+
+/* TODO: Remove Box shadow on input focus */
+.eroNgb:focus{
+  box-shadow: none !important;
+}

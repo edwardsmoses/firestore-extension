@@ -181,6 +181,11 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
       setTargetCollection("")
       setEmojiIcon(DEFAULT_EMOJI_ICON)
+
+
+      //TODO -> Test that this works.. 
+      document.body.click();
+
     } finally {
       setProcessing(false)
     }
@@ -188,12 +193,55 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
   return (
     <Box pad="medium">
-      <Nav>
+      <style>
+        {`
+          
+.eroNgb:focus {
+  box-shadow: none !important;
+}
+
+.elevate-field-settings-header-btn {
+  display: flex;
+  border-radius: 10px;
+  border-color: var(--firebase-elevate-brand-black);
+  width: 25px;
+  height: 25px;
+  border-width: 2px;
+  color: var(--firebase-elevate-brand-black);
+  border-style: solid;
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3px;
+}
+
+.elevate-field-settings-header-btn:hover {
+  text-decoration: none;
+  background-color: rgba(51, 51, 51, 0.05);
+}
+
+.elevate-divider {
+  border-color: var(--firebase-elevate-brand-black);
+  border-bottom-width: 1.7px;
+  color: var(--firebase-elevate-brand-black);
+  border-bottom-style: solid;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  margin-left: 2%;
+  margin-right: 30%;
+}
+
+          `}
+      </style>
+
+      <Box direction="row" gap="6px" className="elevate-divider">
         {(existingTargetOptions || []).map((option) => {
           return (
             <Anchor
               key={option.target}
-              icon={<div>{option.icon}</div>}
+              className="elevate-field-settings-header-btn"
+              icon={<span>{option.icon}</span>}
               onClick={() => {
                 setSelectedTarget(option.target)
                 setEmojiIcon(option.icon)
@@ -203,13 +251,14 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           )
         })}
         <Anchor
-          icon={<div>+</div>}
+          icon={<span>+</span>}
+          className="elevate-field-settings-header-btn"
           onClick={() => {
             setTargetCollection("")
             setEmojiIcon(DEFAULT_EMOJI_ICON)
           }}
         />
-      </Nav>
+      </Box>
 
       <div>
         {isEmojiPickerOpen && (
@@ -221,6 +270,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           />
         )}
       </div>
+
       <Box
         direction="row"
         margin={{
@@ -261,7 +311,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
         />
       </Box>
 
-      <Button primary label="Save" disabled={processing} onClick={handleSave} />
+      <Button type="button" primary label="Save" disabled={processing} onClick={handleSave} />
     </Box>
   )
 }

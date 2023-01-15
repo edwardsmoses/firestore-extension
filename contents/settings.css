@@ -1,5 +1,7 @@
-body, #plasmo-shadow-container {
+body,
+#plasmo-shadow-container {
   --firebase-elevate-brand: #7a52d3;
+  --firebase-elevate-brand-black: #100c08;
   --firebase-elevate-font: "Inter";
 }
 
@@ -7,15 +9,9 @@ body, #plasmo-shadow-container {
   background-color: transparent;
   border-radius: 30px;
   margin-left: 40px;
-  border-color: black;
+  border-color: var(--firebase-elevate-brand-black);
   border-width: 2.3px;
   font-family: var(--firebase-elevate-font);
   font-weight: 600;
   font-size: 11.3px;
-}
-
-
-/* TODO: Remove Box shadow on input focus */
-.eroNgb:focus{
-  box-shadow: none !important;
 }

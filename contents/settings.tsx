@@ -181,11 +181,6 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
       setTargetCollection("")
       setEmojiIcon(DEFAULT_EMOJI_ICON)
-
-
-      //TODO -> Test that this works.. 
-      document.body.click();
-
     } finally {
       setProcessing(false)
     }
@@ -202,7 +197,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
 .elevate-field-settings-header-btn {
   display: flex;
-  border-radius: 10px;
+  border-radius: 11px;
   border-color: var(--firebase-elevate-brand-black);
   width: 25px;
   height: 25px;
@@ -216,13 +211,20 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   padding: 3px;
 }
 
+.elevate-field-settings-header-btn-selected {
+  border-color: var(--firebase-elevate-brand);
+  border-width: 3px;
+  border-style: dotted;
+  border-radius: 7px;
+}
+
 .elevate-field-settings-header-btn:hover {
   text-decoration: none;
   background-color: rgba(51, 51, 51, 0.05);
 }
 
 .elevate-divider {
-  border-color: var(--firebase-elevate-brand-black);
+  border-color: #ababab;
   border-bottom-width: 1.7px;
   color: var(--firebase-elevate-brand-black);
   border-bottom-style: solid;
@@ -240,7 +242,11 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           return (
             <Anchor
               key={option.target}
-              className="elevate-field-settings-header-btn"
+              className={`elevate-field-settings-header-btn ${
+                option.target === selectedTarget
+                  ? "elevate-field-settings-header-btn-selected"
+                  : ""
+              }`}
               icon={<span>{option.icon}</span>}
               onClick={() => {
                 setSelectedTarget(option.target)
@@ -252,7 +258,11 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
         })}
         <Anchor
           icon={<span>+</span>}
-          className="elevate-field-settings-header-btn"
+          className={`elevate-field-settings-header-btn ${
+            selectedTarget === ""
+              ? "elevate-field-settings-header-btn-selected"
+              : ""
+          }`}
           onClick={() => {
             setTargetCollection("")
             setEmojiIcon(DEFAULT_EMOJI_ICON)
@@ -311,7 +321,13 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
         />
       </Box>
 
-      <Button type="button" primary label="Save" disabled={processing} onClick={handleSave} />
+      <Button
+        type="button"
+        primary
+        label="Save"
+        disabled={processing}
+        onClick={handleSave}
+      />
     </Box>
   )
 }

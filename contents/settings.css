@@ -8,10 +8,29 @@ body,
 .elevate-field-settings-btn {
   background-color: transparent;
   border-radius: 30px;
-  margin-left: 40px;
+  margin-left: 3px;
   border-color: var(--firebase-elevate-brand-black);
   border-width: 2.3px;
   font-family: var(--firebase-elevate-font);
   font-weight: 600;
   font-size: 11.3px;
+}
+
+.elevate-field-targets-container {
+  margin-left: 40px;
+}
+
+.elevate-field-targets {
+  border-radius: 50px;
+  border-color: var(--firebase-elevate-brand-black);
+  padding: 1.5px;
+  border-width: 2.5px;
+  border-style: solid;
+  text-decoration: none;
+  margin: 0px 3px;
+}
+
+.elevate-field-targets:hover {
+  text-decoration: none;
+  background-color: rgba(51, 51, 51, 0.05);
 }

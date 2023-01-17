@@ -222,7 +222,7 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
 .elevate-field-settings-header-btn:hover {
   text-decoration: none;
-  background-color: rgba(51, 51, 51, 0.05);
+  background-color: var(--firebase-elevate-brand-black-hover);
 }
 
 .elevate-divider {

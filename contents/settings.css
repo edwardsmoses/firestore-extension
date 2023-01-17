@@ -2,6 +2,7 @@ body,
 #plasmo-shadow-container {
   --firebase-elevate-brand: #7a52d3;
   --firebase-elevate-brand-black: #100c08;
+  --firebase-elevate-brand-black-hover: rgba(51, 51, 51, 0.05);
   --firebase-elevate-font: "Inter";
 }
 
@@ -16,8 +17,9 @@ body,
   font-size: 11.3px;
 }
 
-.elevate-field-settings-btn:hover{
+.elevate-field-settings-btn:hover {
   cursor: pointer;
+  background-color: var(--firebase-elevate-brand-black-hover);
 }
 
 .elevate-field-targets-container {
@@ -36,5 +38,5 @@ body,
 
 .elevate-field-targets:hover {
   text-decoration: none;
-  background-color: rgba(51, 51, 51, 0.05);
+  background-color: var(--firebase-elevate-brand-black-hover);
 }

@@ -192,7 +192,8 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
     <Box pad="medium">
       <style>
         {`
-          
+      
+/* Remove the border on Focus of Text Input */
 .eroNgb:focus {
   box-shadow: none !important;
 }
@@ -236,100 +237,116 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   margin-right: 30%;
 }
 
+/* Hide the Category Navbar in emoji Picker */
+.epr-category-nav {
+  display: none !important;
+}
+
           `}
       </style>
 
-      <Box direction="row" gap="6px" className="elevate-divider">
-        {(existingTargetOptions || []).map((option) => {
-          return (
-            <Anchor
-              key={option.target}
-              className={`elevate-field-settings-header-btn ${
-                option.target === selectedTarget
-                  ? "elevate-field-settings-header-btn-selected"
-                  : ""
-              }`}
-              icon={<span>{option.icon}</span>}
-              onClick={() => {
-                setSelectedTarget(option.target)
-                setEmojiIcon(option.icon)
-                setTargetCollection(option.target)
-              }}
-            />
-          )
-        })}
-        <Anchor
-          icon={<span>+</span>}
-          className={`elevate-field-settings-header-btn ${
-            selectedTarget === ""
-              ? "elevate-field-settings-header-btn-selected"
-              : ""
-          }`}
-          onClick={() => {
-            setTargetCollection("")
-            setEmojiIcon(DEFAULT_EMOJI_ICON)
-          }}
-        />
-      </Box>
-
-      <div>
-        {isEmojiPickerOpen && (
+      {isEmojiPickerOpen && (
+        <div>
           <EmojiPicker
+            width="250px"
+            height="250px"
+            categories={[]}
+            previewConfig={{
+              showPreview: false,
+              defaultEmoji: DEFAULT_EMOJI_ICON
+            }}
             onEmojiClick={(emoji) => {
               setEmojiIcon(emoji.emoji)
               setIsEmojiPickerOpen(false)
             }}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      <Box
-        direction="row"
-        margin={{
-          vertical: "4px"
-        }}
-        style={{
-          alignItems: "center"
-        }}
-        gap="5px">
-        <Button
-          style={{
-            borderRadius: "50px",
-            borderColor: "#7a52d3",
-            padding: "1px",
-            borderWidth: "2.5px",
-            borderStyle: "solid"
-          }}
-          type="button"
-          onClick={() => {
-            setIsEmojiPickerOpen((prev) => !prev)
-          }}>
-          {emojiIcon}
-        </Button>
-        <Text>Related Collection</Text>
-      </Box>
+      {!isEmojiPickerOpen && (
+        <>
+          <Box direction="row" gap="6px" className="elevate-divider">
+            {(existingTargetOptions || []).map((option) => {
+              return (
+                <Anchor
+                  key={option.target}
+                  className={`elevate-field-settings-header-btn ${
+                    option.target === selectedTarget
+                      ? "elevate-field-settings-header-btn-selected"
+                      : ""
+                  }`}
+                  icon={<span>{option.icon}</span>}
+                  onClick={() => {
+                    setSelectedTarget(option.target)
+                    setEmojiIcon(option.icon)
+                    setTargetCollection(option.target)
+                  }}
+                />
+              )
+            })}
+            <Anchor
+              icon={<span>+</span>}
+              className={`elevate-field-settings-header-btn ${
+                selectedTarget === ""
+                  ? "elevate-field-settings-header-btn-selected"
+                  : ""
+              }`}
+              onClick={() => {
+                setTargetCollection("")
+                setEmojiIcon(DEFAULT_EMOJI_ICON)
+              }}
+            />
+          </Box>
 
-      <Box
-        margin={{
-          horizontal: "5px",
-          top: "4px",
-          bottom: "6px"
-        }}>
-        <TextInput
-          placeholder="collection name"
-          value={targetCollection}
-          focusIndicator={false}
-          onChange={(event) => setTargetCollection(event.target.value)}
-        />
-      </Box>
+          <Box
+            direction="row"
+            margin={{
+              vertical: "4px"
+            }}
+            style={{
+              alignItems: "center"
+            }}
+            gap="5px">
+            <Button
+              style={{
+                borderRadius: "50px",
+                borderColor: "#7a52d3",
+                padding: "1px",
+                borderWidth: "2.5px",
+                borderStyle: "solid"
+              }}
+              type="button"
+              onClick={() => {
+                setIsEmojiPickerOpen((prev) => !prev)
+              }}>
+              {emojiIcon}
+            </Button>
+            <Text>Related Collection</Text>
+          </Box>
 
-      <Button
-        type="button"
-        primary
-        label="Save"
-        disabled={processing}
-        onClick={handleSave}
-      />
+          <Box
+            margin={{
+              horizontal: "5px",
+              top: "4px",
+              bottom: "6px"
+            }}>
+            <TextInput
+              placeholder="collection name"
+              value={targetCollection}
+              focusIndicator={false}
+              onChange={(event) => setTargetCollection(event.target.value)}
+            />
+          </Box>
+
+          <Button
+            type="button"
+            primary
+            label="Save"
+            disabled={processing}
+            onClick={handleSave}
+          />
+        </>
+      )}
     </Box>
   )
 }

@@ -98,6 +98,7 @@ const PlasmoInline = (props) => {
           return (
             <Button
               key={option.target}
+              title={option.target}
               className="elevate-field-targets"
               href={`/project/${currentProject}/firestore/data/${option.target}/${fieldValue}`}
               primary>

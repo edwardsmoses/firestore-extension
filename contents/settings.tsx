@@ -14,12 +14,10 @@ import {
 import type { PlasmoContentScript } from "plasmo"
 import type { PlasmoGetStyle } from "plasmo"
 import { useState } from "react"
+import { Transition } from "react-transition-group"
 
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
-
-import { Transition } from "react-transition-group";
-
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
@@ -191,6 +189,16 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
     }
   }
 
+  const defaultStyle = {
+    transition: `transform 500ms ease-in-out`,
+    transform: "translateY(5px)"
+  }
+
+  const transitionStyles = {
+    entering: { transform: "translateY(5px)" },
+    entered: { transform: "translateY(0px)" }
+  }
+
   return (
     <Box pad="medium">
       <style>
@@ -250,11 +258,8 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   transition:  opacity 3s ease-in-out;
 }
 
-.fade-out {
-  opacity:0;
-}
-.fade-in {
-  opacity:1;
+.relative {
+  position: relative;
 }
 
 
@@ -262,50 +267,61 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 20px;
-  top: 10px;
+  right: 10px;
+  top: -10px;
   cursor: pointer;
 }
 
           `}
       </style>
 
-      <div className={isEmojiPickerOpen ? "fade-in" : "fade-out"}>
-        {isEmojiPickerOpen && (
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              onClick={() => {
-                setIsEmojiPickerOpen(false)
-              }}
-              className="closeEmojiPickerBtn">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+      <Transition in={isEmojiPickerOpen} timeout={500}>
+        {(state) => (
+          <>
+            <div
+              className="relative"
+              style={{
+                ...defaultStyle,
+                ...transitionStyles[state]
+              }}>
+              {isEmojiPickerOpen && (
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    onClick={() => {
+                      setIsEmojiPickerOpen(false)
+                    }}
+                    className="closeEmojiPickerBtn">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
 
-            <EmojiPicker
-              width="250px"
-              height="250px"
-              categories={[]}
-              previewConfig={{
-                showPreview: false,
-                defaultEmoji: DEFAULT_EMOJI_ICON
-              }}
-              onEmojiClick={(emoji) => {
-                setEmojiIcon(emoji.emoji)
-                setIsEmojiPickerOpen(false)
-              }}
-            />
-          </div>
+                  <EmojiPicker
+                    width="250px"
+                    height="250px"
+                    categories={[]}
+                    previewConfig={{
+                      showPreview: false,
+                      defaultEmoji: DEFAULT_EMOJI_ICON
+                    }}
+                    onEmojiClick={(emoji) => {
+                      setEmojiIcon(emoji.emoji)
+                      setIsEmojiPickerOpen(false)
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          </>
         )}
-      </div>
+      </Transition>
 
       {!isEmojiPickerOpen && (
         <>

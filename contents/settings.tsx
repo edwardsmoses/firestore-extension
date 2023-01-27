@@ -18,6 +18,9 @@ import { useState } from "react"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
+import { Transition } from "react-transition-group";
+
+
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
   style.textContent = styleText
@@ -244,7 +247,16 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
 
 .EmojiPickerReact {
   margin: 15px 0;
+  transition:  opacity 3s ease-in-out;
 }
+
+.fade-out {
+  opacity:0;
+}
+.fade-in {
+  opacity:1;
+}
+
 
 .closeEmojiPickerBtn {
   width: 20px;
@@ -258,40 +270,42 @@ const SettingsBox = ({ documentName, fieldName, projectId }: SettingsProps) => {
           `}
       </style>
 
-      {isEmojiPickerOpen && (
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            onClick={() => {
-              setIsEmojiPickerOpen(false)
-            }}
-            className="closeEmojiPickerBtn">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+      <div className={isEmojiPickerOpen ? "fade-in" : "fade-out"}>
+        {isEmojiPickerOpen && (
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              onClick={() => {
+                setIsEmojiPickerOpen(false)
+              }}
+              className="closeEmojiPickerBtn">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
 
-          <EmojiPicker
-            width="250px"
-            height="250px"
-            categories={[]}
-            previewConfig={{
-              showPreview: false,
-              defaultEmoji: DEFAULT_EMOJI_ICON
-            }}
-            onEmojiClick={(emoji) => {
-              setEmojiIcon(emoji.emoji)
-              setIsEmojiPickerOpen(false)
-            }}
-          />
-        </div>
-      )}
+            <EmojiPicker
+              width="250px"
+              height="250px"
+              categories={[]}
+              previewConfig={{
+                showPreview: false,
+                defaultEmoji: DEFAULT_EMOJI_ICON
+              }}
+              onEmojiClick={(emoji) => {
+                setEmojiIcon(emoji.emoji)
+                setIsEmojiPickerOpen(false)
+              }}
+            />
+          </div>
+        )}
+      </div>
 
       {!isEmojiPickerOpen && (
         <>

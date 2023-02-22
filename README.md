@@ -1,33 +1,26 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+<h2 align="center">FirebaseElevate</h2>
 
-## Getting Started
+<p align="center">
+  <a rel="noreferrer noopener" href="https://chrome.google.com/webstore/detail/firebaseelevate/gdkmeifhinconkjfelkgmamndiimafcb?hl=en&authuser=0">
+    <img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome-141e24.svg?&style=for-the-badge&logo=google-chrome&logoColor=white"></a>  
+ 
+<br/>
+<p align="center">FirebaseElevate is an <strong>open-source</strong> <strong>browser extension</strong> designed to up your Firebase console. <br />
+  It allows you to create relations for your collections and easily navigate to related documents.</p>
+<br/>
+<p align="center">
+<img src="https://lh3.googleusercontent.com/t0F9XdFFe_L7A9dWy5RQWviv2EdIpzR7S3KEHfG6iDm6t5lmmpIM6O1jdXSR8XlSFuZ1EwmVLziJNUhbnJsbW-Gsdj0=w640-h400-e365-rj-sc0x00ffffff" /> </p>
+<br/>
 
-First, run the development server:
+## How to contribute
 
-```bash
-pnpm dev
-# or
-npm run dev
-```
+First off, thanks for taking the time to contribute! ❤️
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+All types of contributions are encouraged and valued. Feel free to fork the codebase and make a pull request for your changes.
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
-
-```bash
-pnpm build
-# or
-npm run build
-```
-
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
-
-## Submit to the webstores
-
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/workflows/submit) and you should be on your way for automated submission!
+- Star the project
+- Tweet about it
+- Refer this project in your project's readme
+- Mention the project at local meetups and tell your friends/colleagues

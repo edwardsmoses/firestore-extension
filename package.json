@@ -1,8 +1,8 @@
 {
   "name": "firebase-extension",
-  "displayName": "Firebase extension",
-  "version": "0.0.0",
-  "description": "A basic Plasmo extension.",
+  "displayName": "FirebaseElevate",
+  "version": "0.0.1",
+  "description": "Elevate your Firebase experience.",
   "author": "edwar",
   "packageManager": "yarn@1.22.18",
   "scripts": {

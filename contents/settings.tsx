@@ -19,6 +19,9 @@ import { Transition } from "react-transition-group"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
+import { AppContainer } from "~/components/AppContainer"
+import { AppDropButton } from "~/components/AppDropButton"
+
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
   style.textContent = styleText
@@ -93,8 +96,8 @@ const PlasmoInline = (props) => {
   const targetOptions = storage[0] as TargetCollection[]
 
   return (
-    <Grommet>
-      <div className="elevate-field-targets-container">
+    <AppContainer>
+      <>
         {(targetOptions || []).map((option) => {
           return (
             <Button
@@ -107,18 +110,9 @@ const PlasmoInline = (props) => {
             </Button>
           )
         })}
-        <DropButton
-          primary
-          label="Settings"
-          className="elevate-field-settings-btn"
-          dropProps={{
-            style: {
-              fontFamily: "var(--firebase-elevate-font)",
-              borderRadius: "25px",
-              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-            }
-          }}
-          dropContent={
+        <AppDropButton
+          btnLabel="Settings"
+          btnDropContent={
             <SettingsBox
               fieldName={fieldKey}
               documentName={currentDocument}
@@ -126,8 +120,8 @@ const PlasmoInline = (props) => {
             />
           }
         />
-      </div>
-    </Grommet>
+      </>
+    </AppContainer>
   )
 }
 

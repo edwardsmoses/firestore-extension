@@ -1,10 +1,14 @@
+import authStyleText from "data-text:./auth.css"
 import styleText from "data-text:./settings.css"
 import type { PlasmoContentScript } from "plasmo"
 import type { PlasmoGetStyle } from "plasmo"
 
+import { AppContainer } from "~/components/AppContainer"
+import { AppDropButton } from "~/components/AppDropButton"
+
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
-  style.textContent = styleText
+  style.textContent = styleText + authStyleText
   return style
 }
 
@@ -14,15 +18,14 @@ export const config: PlasmoContentScript = {
 }
 
 export const getInlineAnchor = async () => {
-
-  // > mat-card-content > th 
+  // > mat-card-content > th
   const elements = document.querySelectorAll(
-    "authentication-users  mat-card th > div.mat-sort-header-container"
+    "authentication-users mat-card th > div.mat-sort-header-container"
   )
 
   //we're targeting the last column - 'User Uid' in the Table Header in the Authentication page
-  const lastColumnHeader = elements[elements.length - 1];
-  return lastColumnHeader;
+  const lastColumnHeader = elements[elements.length - 1]
+  return lastColumnHeader
 }
 
 // Use this to optimize unmount lookups
@@ -31,7 +34,14 @@ export const getShadowHostId = () => "firebase-elevate-auth-settings-id"
 const AuthSettingsInline = (props) => {
   const { anchor } = props
 
-  return <button>Settings</button>
+  return (
+    <AppContainer>
+      <AppDropButton
+        btnLabel="Settings"
+        btnDropContent={<div>Settings Info</div>}
+      />
+    </AppContainer>
+  )
 }
 
 export default AuthSettingsInline

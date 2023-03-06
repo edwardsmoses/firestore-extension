@@ -5,6 +5,7 @@ import type { PlasmoGetStyle } from "plasmo"
 
 import { AppContainer } from "~/components/AppContainer"
 import { AppDropButton } from "~/components/AppDropButton"
+import { SettingsPopup } from "~components/Settings"
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
@@ -38,7 +39,7 @@ const AuthSettingsInline = (props) => {
     <AppContainer>
       <AppDropButton
         btnLabel="Settings"
-        btnDropContent={<div>Settings Info</div>}
+        btnDropContent={<SettingsPopup storageKey="firebaselevate-auth-id" />}
       />
     </AppContainer>
   )

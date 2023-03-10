@@ -1,7 +1,5 @@
 import styleText from "data-text:./settings.css"
-import type { PlasmoContentScript } from "plasmo"
-import type { PlasmoGetStyle } from "plasmo"
-
+import type { PlasmoGetStyle, PlasmoCSConfig } from "plasmo"
 
 import { AppContainer } from "~/components/AppContainer"
 import { AppDropButton } from "~/components/AppDropButton"
@@ -15,7 +13,7 @@ export const getStyle: PlasmoGetStyle = () => {
   return style
 }
 
-export const config: PlasmoContentScript = {
+export const config: PlasmoCSConfig = {
   matches: ["https://console.firebase.google.com/*"],
   css: ["font.css"]
 }

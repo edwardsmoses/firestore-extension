@@ -11,6 +11,9 @@ export const AppDropButton = ({
     <DropButton
       primary
       label={btnLabel}
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
       className="elevate-field-settings-btn"
       dropProps={{
         style: {

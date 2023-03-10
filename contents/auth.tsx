@@ -38,7 +38,7 @@ const AuthSettingsInline = (props) => {
   return (
     <AppContainer>
       <AppDropButton
-        btnLabel="Settings"
+        btnLabel="Settings"      
         btnDropContent={<SettingsPopup storageKey="firebaselevate-auth-id" />}
       />
     </AppContainer>

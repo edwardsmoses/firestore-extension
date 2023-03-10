@@ -1,7 +1,6 @@
 import authStyleText from "data-text:./auth.css"
 import styleText from "data-text:./settings.css"
-import type { PlasmoContentScript } from "plasmo"
-import type { PlasmoGetStyle } from "plasmo"
+import type { PlasmoCSConfig, PlasmoGetStyle } from "plasmo"
 
 import { AppContainer } from "~/components/AppContainer"
 import { FirestoreTargetCollectionsList } from "~components/FirestoreTargetCollectionsList"
@@ -9,11 +8,19 @@ import { generateStorageKey, getCurrentProject } from "~utils/utils"
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
-  style.textContent = styleText + authStyleText
+  style.textContent =
+    styleText +
+    authStyleText +
+    `
+      #plasmo-shadow-container {
+        z-index: 10 !important;
+      }
+    `
+
   return style
 }
 
-export const config: PlasmoContentScript = {
+export const config: PlasmoCSConfig = {
   matches: ["https://console.firebase.google.com/*"],
   css: ["font.css"]
 }
@@ -40,10 +47,10 @@ const AuthSettingsInline = (props) => {
     projectId: currentProject,
     documentName: "firebase",
     fieldName: "auth"
-  });
+  })
 
   const userUIDFieldElement = anchor.element as HTMLDivElement
-  const userUIDFieldValue = userUIDFieldElement.textContent.trim();
+  const userUIDFieldValue = userUIDFieldElement.textContent.trim()
 
   return (
     <AppContainer>

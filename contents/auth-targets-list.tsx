@@ -42,11 +42,14 @@ const AuthSettingsInline = (props) => {
     fieldName: "auth"
   });
 
+  const userUIDFieldElement = anchor.element as HTMLDivElement
+  const userUIDFieldValue = userUIDFieldElement.textContent.trim();
+
   return (
     <AppContainer>
       <FirestoreTargetCollectionsList
         currentProject={currentProject}
-        fieldValue={""}
+        fieldValue={userUIDFieldValue}
         storageKey={storageKey}
       />
     </AppContainer>

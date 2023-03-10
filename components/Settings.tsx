@@ -1,11 +1,5 @@
 import EmojiPicker from "emoji-picker-react"
-import {
-  Anchor,
-  Box,
-  Button,
-  Text,
-  TextInput
-} from "grommet"
+import { Anchor, Box, Button, Text, TextInput } from "grommet"
 import { useState } from "react"
 import { Transition } from "react-transition-group"
 
@@ -15,7 +9,15 @@ import { useStorage } from "@plasmohq/storage/hook"
 import { DEFAULT_EMOJI_ICON } from "~utils/constants"
 import type { TargetCollection } from "~utils/types"
 
-export const SettingsPopup = ({ storageKey }: { storageKey: string }) => {
+export const SettingsPopup = ({
+  storageKey,
+  headerLabel = "Related Collection",
+  buttonLabel = "Save"
+}: {
+  storageKey: string
+  headerLabel?: string
+  buttonLabel?: string
+}) => {
   const [targetCollection, setTargetCollection] = useState("")
   const [emojiIcon, setEmojiIcon] = useState(DEFAULT_EMOJI_ICON)
 
@@ -257,7 +259,7 @@ export const SettingsPopup = ({ storageKey }: { storageKey: string }) => {
               }}>
               {emojiIcon}
             </Button>
-            <Text>Related Collection</Text>
+            <Text>{headerLabel}</Text>
           </Box>
 
           <Box
@@ -277,7 +279,7 @@ export const SettingsPopup = ({ storageKey }: { storageKey: string }) => {
           <Button
             type="button"
             primary
-            label="Save"
+            label={buttonLabel}
             disabled={processing}
             onClick={handleSave}
           />

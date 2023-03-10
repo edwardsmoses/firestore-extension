@@ -21,6 +21,7 @@ import { useStorage } from "@plasmohq/storage/hook"
 
 import { AppContainer } from "~/components/AppContainer"
 import { AppDropButton } from "~/components/AppDropButton"
+import { getCurrentProject } from "~utils/utils"
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
@@ -75,11 +76,12 @@ const PlasmoInline = (props) => {
   ).replace(/['"]/g, "")
 
   //get the current project from the URL
-  const currentURL = window.location.href
+  const currentProject = getCurrentProject();
 
+  //get the current document from the URL
+  const currentURL = window.location.href
   const urlArray = currentURL.split("/")
 
-  const currentProject = urlArray[6] || ""
 
   //TODO Look into if there's another way to get the document info from the url
   const currentDocument = urlArray[urlArray.length - 1]

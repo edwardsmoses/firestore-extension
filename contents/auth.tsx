@@ -6,6 +6,7 @@ import type { PlasmoGetStyle } from "plasmo"
 import { AppContainer } from "~/components/AppContainer"
 import { AppDropButton } from "~/components/AppDropButton"
 import { SettingsPopup } from "~components/Settings"
+import { generateStorageKey, getCurrentProject } from "~utils/utils"
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
@@ -35,6 +36,12 @@ export const getShadowHostId = () => "firebase-elevate-auth-settings-id"
 const AuthSettingsInline = (props) => {
   const { anchor } = props
 
+  const storageKey = generateStorageKey({
+    projectId: getCurrentProject(),
+    documentName: "firebase",
+    fieldName: "auth"
+  })
+
   return (
     <AppContainer>
       <AppDropButton
@@ -43,7 +50,7 @@ const AuthSettingsInline = (props) => {
           <SettingsPopup
             buttonLabel="Add Target"
             headerLabel="Target Collection"
-            storageKey="firebaselevate-auth-id"
+            storageKey={storageKey}
           />
         }
       />

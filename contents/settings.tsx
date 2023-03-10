@@ -1,16 +1,13 @@
 import styleText from "data-text:./settings.css"
-import {
-  Button} from "grommet"
 import type { PlasmoContentScript } from "plasmo"
 import type { PlasmoGetStyle } from "plasmo"
 
-import { useStorage } from "@plasmohq/storage/hook"
 
 import { AppContainer } from "~/components/AppContainer"
 import { AppDropButton } from "~/components/AppDropButton"
+import { FirestoreTargetCollectionsList } from "~components/FirestoreTargetCollectionsList"
 import { SettingsPopup } from "~components/Settings"
 import { generateStorageKey, getCurrentProject } from "~utils/utils"
-import type { TargetCollection } from "~utils/types"
 
 export const getStyle: PlasmoGetStyle = () => {
   const style = document.createElement("style")
@@ -33,8 +30,6 @@ export const getInlineAnchorList = async () => {
 
 // Use this to optimize unmount lookups
 export const getShadowHostId = () => "plasmo-inline-settings-id"
-
-
 
 const PlasmoInline = (props) => {
   const { anchor } = props
@@ -66,24 +61,15 @@ const PlasmoInline = (props) => {
     projectId: currentProject
   })
 
-  const storage = useStorage(storageKey)
-  const targetOptions = storage[0] as TargetCollection[]
-
   return (
     <AppContainer>
       <>
-        {(targetOptions || []).map((option) => {
-          return (
-            <Button
-              key={option.target}
-              title={option.target}
-              className="elevate-field-targets"
-              href={`/project/${currentProject}/firestore/data/${option.target}/${fieldValue}`}
-              primary>
-              {option.icon}
-            </Button>
-          )
-        })}
+        <FirestoreTargetCollectionsList
+          currentProject={currentProject}
+          fieldValue={fieldValue}
+          storageKey={storageKey}
+        />
+
         <AppDropButton
           btnLabel="Settings"
           btnDropContent={<SettingsPopup storageKey={storageKey} />}
@@ -92,7 +78,5 @@ const PlasmoInline = (props) => {
     </AppContainer>
   )
 }
-
-
 
 export default PlasmoInline

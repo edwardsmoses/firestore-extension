@@ -1,7 +1,7 @@
 {
   "name": "firebase-extension",
   "displayName": "FirebaseElevate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Elevate your Firebase experience.",
   "author": "edwar",
   "packageManager": "yarn@1.22.18",

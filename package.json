@@ -3,7 +3,7 @@
   "displayName": "FirebaseElevate",
   "version": "0.2.0",
   "description": "Elevate your Firebase experience.",
-  "author": "edwar",
+  "author": "edwardsmoses",
   "packageManager": "yarn@1.22.18",
   "scripts": {
     "dev": "plasmo dev",

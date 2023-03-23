@@ -24,3 +24,7 @@ And if you like the project, but just don't have time to contribute, that's fine
 - Tweet about it
 - Refer this project in your project's readme
 - Mention the project at local meetups and tell your friends/colleagues
+
+
+The framework in use for extension:
+<a href="https://github.com/PlasmoHQ/plasmo">PlasmoHQ</a>

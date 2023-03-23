@@ -24,3 +24,15 @@ And if you like the project, but just don't have time to contribute, that's fine
 - Tweet about it
 - Refer this project in your project's readme
 - Mention the project at local meetups and tell your friends/colleagues
+
+## How to start project
+<h1>Building for use</h1>
+If you want to contribute to this repository, 
+* You need to first clone this repo using github desktop or rather fork.
+* You can install extension from a file. Open the terminal in the root folder and run:
+</br>
+1. Install <code>yarn</code> </br>
+2. Install the dependencies with:
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>npm install --global yarn
+</code></pre>
+

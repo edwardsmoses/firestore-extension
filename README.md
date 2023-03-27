@@ -25,14 +25,38 @@ And if you like the project, but just don't have time to contribute, that's fine
 - Refer this project in your project's readme
 - Mention the project at local meetups and tell your friends/colleagues
 
+The framework in use for extension:
+<a href="https://github.com/PlasmoHQ/plasmo">PlasmoHQ</a>
+
+
+
+<h1>System Requirement</h1>
+* Node.js 16.x or later
+
+
 ## How to start project
-<h1>Building for use</h1>
+<h1>Development</h1>
 If you want to contribute to this repository, 
 * You need to first clone this repo using github desktop or rather fork.
-* You can install extension from a file. Open the terminal in the root folder and run:
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span>
+https://github.com/edwardsmoses/firestore-extension.git
+
+* <code>npm install</code>
+* Install dependencies
+
+<h1>Installation</h1>
+<h3>Building for use</h3>
+* Install <code>npm</code>. Open the terminal <i>Command prompt</i>in the root folder to run:
 </br>
 1. Install <code>yarn</code> </br>
 2. Install the dependencies with:
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>npm install --global yarn
 </code></pre>
+3. Use <code>yarn dev</code> to run dev mode.
+
+<h1>Usage</h1>
+
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate">npm install</b> npm dev</pre>
+
+
 

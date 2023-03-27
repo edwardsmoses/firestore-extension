@@ -40,9 +40,8 @@ If you want to contribute to this repository,
 * You need to first clone this repo using github desktop or rather fork.
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span>
 https://github.com/edwardsmoses/firestore-extension.git
+</pre>
 
-* <code>npm install</code>
-* Install dependencies
 
 <h1>Installation</h1>
 <h3>Building for use</h3>
@@ -56,7 +55,7 @@ https://github.com/edwardsmoses/firestore-extension.git
 
 <h1>Usage</h1>
 
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate">npm install</b> npm dev</pre>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate">yarn install</b> npm dev</pre>
 
 
 

@@ -25,37 +25,39 @@ And if you like the project, but just don't have time to contribute, that's fine
 - Refer this project in your project's readme
 - Mention the project at local meetups and tell your friends/colleagues
 
+
 The framework in use for extension:
 <a href="https://github.com/PlasmoHQ/plasmo">PlasmoHQ</a>
 
 
 
 <h1>System Requirement</h1>
-* Node.js 16.x or later
+- Node.js 16.x or later
 
 
-## How to start project
+<!-- ## How to start project -->
 <h1>Development</h1>
-If you want to contribute to this repository, 
-* You need to first clone this repo using github desktop or rather fork.
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span>
+If you want to contribute to this repository, </br>
+- You need to first clone this repo using github desktop or rather fork.</br>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span> </br>
 https://github.com/edwardsmoses/firestore-extension.git
 </pre>
 
 
 <h1>Installation</h1>
 <h3>Building for use</h3>
-* Install <code>npm</code>. Open the terminal <i>Command prompt</i>in the root folder to run:
+- Install <code>yarn.lock</code>.  Open the terminal <i>Command prompt</i> in the root folder to run:
 </br>
 1. Install <code>yarn</code> </br>
-2. Install the dependencies with:
+
+2. Install the dependencies with:</br>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>npm install --global yarn
 </code></pre>
-3. Use <code>yarn dev</code> to run dev mode.
+3. Use </br>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>yarn dev
+</code></pre>
 
-<h1>Usage</h1>
 
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate">yarn install</b> npm dev</pre>
 
 
 

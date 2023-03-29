@@ -48,14 +48,17 @@ https://github.com/edwardsmoses/firestore-extension.git
 <h3>Building for use</h3>
 - Install <code>yarn.lock</code>.  Open the terminal <i>Command prompt</i> in the root folder to run:
 </br>
-1. Install <code>yarn</code> </br>
-
+1. Install <code>yarn</code>
 2. Install the dependencies with:</br>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>npm install --global yarn
 </code></pre>
-3. Use </br>
+3. Use to run </br>
 <div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>yarn dev
 </code></pre>
+
+<h1>Loading the Extension in Chrome</h2>
+Head over to <code>chrome://extensions </code> and enable Developer Mode.
+
 
 
 

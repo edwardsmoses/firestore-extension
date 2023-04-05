@@ -44,7 +44,7 @@ The framework in use for extension:
 If you want to contribute to this repository, </br>
 
 * You need to first clone this repo using github desktop or rather fork.<br  /> 
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre style=" border-radius: 15px;"><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
 https://github.com/edwardsmoses/firestore-extension.git
 </pre>
 
@@ -58,13 +58,13 @@ Install Node.js
 Install <code>yarn.lock</code>.  Open the terminal <i>Command prompt</i> in the root folder to run: <br  />
 1. Install <code>yarn</code><br />
 2. Install the dependencies with: <br /> <br />
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto border-radius-orange"><pre class="notranslate"><code>npm install --global yarn
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto border-radius-orange"><pre class="notranslate" style=" border-radius: 12px;"><code>npm install --global yarn
 </code>
 The command will install Yarn globally on your system.
 </pre>
 
 3. Use to run <br /><br/>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>yarn dev
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate" style=" border-radius: 12px;"><code>yarn dev
 </code></pre>
 
 <h3>Yarn commands:</h3>
@@ -74,7 +74,9 @@ The command will install Yarn globally on your system.
 
 <br  />
 <h1>Loading the Extension in Chrome</h2>
-Head over to <code>chrome://extensions </code> and enable Developer Mode.
-
-  <p align="center" ![Screenshot 2023-03-30 230207](https://user-images.githubusercontent.com/108338208/229625199-f847b6a9-8020-4d9e-9e72-f8f7dc6f297c.png) </p>
-
+Head over to <code>chrome://extensions </code> and enable <strong>Developer Mode</strong>.
+<br />
+<br />
+<p align="center">
+  <img src="image/chrome-Extension.png" width="620" style=" border-radius: 30px;"> 
+</p>

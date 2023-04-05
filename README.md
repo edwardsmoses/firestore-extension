@@ -80,3 +80,4 @@ Head over to <code>chrome://extensions </code> and enable <strong>Developer Mode
 <p align="center">
   <img src="image/chrome-Extension.png" width="620" style=" border-radius: 30px;"> 
 </p>
+

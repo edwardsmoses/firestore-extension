@@ -76,4 +76,5 @@ The command will install Yarn globally on your system.
 <h1>Loading the Extension in Chrome</h2>
 Head over to <code>chrome://extensions </code> and enable Developer Mode.
 
+  <p align="center" ![Screenshot 2023-03-30 230207](https://user-images.githubusercontent.com/108338208/229625199-f847b6a9-8020-4d9e-9e72-f8f7dc6f297c.png) </p>
 

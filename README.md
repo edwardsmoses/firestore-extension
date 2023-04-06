@@ -44,8 +44,7 @@ The framework in use for extension:
 If you want to contribute to this repository, </br>
 
 * You need to first clone this repo using github desktop or rather fork.<br  /> 
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre style=" border-radius: 15px;"><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre style=" border-radius: 16px;"><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre style=" border-radius: 12px;"><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
 https://github.com/edwardsmoses/firestore-extension.git
 </pre>
 
@@ -65,7 +64,7 @@ The command will install Yarn globally on your system.
 </pre>
 
 3. Use to run <br /><br/>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate" style=" border-radius: 16px;"><code>yarn dev
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate" style=" border-radius: 12px;"><code>yarn dev
 </code></pre>
 
 <h3>Yarn commands:</h3>

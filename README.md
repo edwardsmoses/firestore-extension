@@ -24,3 +24,60 @@ And if you like the project, but just don't have time to contribute, that's fine
 - Tweet about it
 - Refer this project in your project's readme
 - Mention the project at local meetups and tell your friends/colleagues
+
+
+The framework in use for extension:
+<a href="https://github.com/PlasmoHQ/plasmo">PlasmoHQ</a>
+
+<br  />
+
+
+<h1>System Requirement</h1>
+
+- Node.js 16.x or later
+<br  /> <br  />
+
+
+
+<!-- ## How to start project -->
+<h1>Development</h1>
+If you want to contribute to this repository, </br>
+
+* You need to first clone this repo using github desktop or rather fork.<br  /> 
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre style=" border-radius: 12px;"><span class="pl-c"><span class="pl-c">#</span> clone your fork to your local machine</span></br>
+https://github.com/edwardsmoses/firestore-extension.git
+</pre>
+
+
+<h1>Installation</h1>
+Install Node.js
+
+ * Tap <a href="https://nodejs.org/en/">nodejs</a> to download.
+
+<h2>Building for use</h2>
+Install <code>yarn.lock</code>.  Open the terminal <i>Command prompt</i> in the root folder to run: <br  />
+1. Install <code>yarn</code><br />
+2. Install the dependencies with: <br /> <br />
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto border-radius-orange"><pre class="notranslate" style=" border-radius: 16px;"><code>npm install --global yarn
+</code>
+The command will install Yarn globally on your system.
+</pre>
+
+3. Use to run <br /><br/>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate" style=" border-radius: 12px;"><code>yarn dev
+</code></pre>
+
+<h3>Yarn commands:</h3>
+
+ * Yarn add [package]  - To add a package
+ * Yarn install  - To install dependencies
+
+<br  />
+<h1>Loading the Extension in Chrome</h2>
+Head over to <code>chrome://extensions </code> and enable <strong>Developer Mode</strong>.
+<br />
+<br />
+<p align="center">
+  <img src="image/chrome-Extension.png" style=" border-radius: 40px;" width="620"> 
+</p>
+
